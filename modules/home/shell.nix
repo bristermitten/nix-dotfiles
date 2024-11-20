@@ -12,11 +12,17 @@
     # For macOS's default shell.
     zsh = {
       enable = true;
+      enableCompletion = true;
       autosuggestion.enable = true;
       syntaxHighlighting.enable = true;
       envExtra = ''
         # Custom zshrc goes here
       '';
+      oh-my-zsh = {
+        enable = true;
+        plugins = [ "git" "sudo" ];
+      };
+
     };
 
     # Type `z <pat>` to cd to some directory
