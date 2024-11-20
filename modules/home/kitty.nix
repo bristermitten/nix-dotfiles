@@ -24,6 +24,7 @@
         macos_option_as_alt = "no";
         scrollback_lines = 10000;
         shell_integration = "no-cursor";
+        open_url_with = "default";
       };
     };
   };
