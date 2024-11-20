@@ -3,6 +3,6 @@
 
 
   home.packages = [
-  pkgs.spotify
-     ];
+    pkgs.spotify
+  ];
 }
