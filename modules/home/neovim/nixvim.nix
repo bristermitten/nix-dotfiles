@@ -2,7 +2,9 @@
 {
   # Theme
   colorschemes.onedark.enable = true;
-
+  
+  vimAlias = true;
+  viAlias = true;
   # Settings
   opts = {
     expandtab = true;
