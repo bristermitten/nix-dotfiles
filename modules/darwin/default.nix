@@ -9,6 +9,7 @@ in
 {
   # Use TouchID for `sudo` authentication
   security.pam.enableSudoTouchIdAuth = true;
+  services.nix-daemon.enable = true;
 
   # These users can add Nix caches.
   nix.settings.trusted-users = [ "root" "alex" ];
@@ -20,10 +21,10 @@ in
       dock = {
         # autohide = true;
         # customize Hot Corners
-        wvous-tl-corner = 2; # top-left - Mission Control
+        # wvous-tl-corner = 2; # top-left - Mission Control
         # wvous-tr-corner = 13; # top-right - Lock Screen
-        wvous-bl-corner = 3; # bottom-left - Application Windows
-        wvous-br-corner = 4; # bottom-right - Desktop
+        # wvous-bl-corner = 3; # bottom-left - Application Windows
+        # wvous-br-corner = 4; # bottom-right - Desktop
       };
 
       finder = {
