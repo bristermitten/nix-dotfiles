@@ -5,6 +5,10 @@
     lg = "lazygit";
   };
 
+  home.packages = [
+    pkgs.gh
+  ];
+
   # https://nixos.asia/en/git
   programs = {
     git = {
