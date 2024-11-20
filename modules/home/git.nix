@@ -16,10 +16,10 @@
         ci = "commit";
       };
 
-signing = {
+      signing = {
         key = "~/.ssh/id_ed25519";
-      signByDefault = true;
-};
+        signByDefault = true;
+      };
 
       extraConfig = {
         # pull.rebase = "false";
