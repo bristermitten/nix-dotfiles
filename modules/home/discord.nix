@@ -1,4 +1,4 @@
-{ pkgs, home, environment, ... }:
+{ pkgs, ... }:
 {
 
 
