@@ -5,6 +5,8 @@
 
   ];
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
+  nix.settings.substituters = ["https://cache.garnix.io"  "https://cache.nixos.org/" "https://nix-community.cachix.org" ];
+  nix.settings.trusted-public-keys = ["cache.garnix.io:CTFPyKSLcx5RMJKfLo5EEPUObbA78b0YQ2DTCJXqr9g=" ];
   boot.tmp.cleanOnBoot = true;
   zramSwap.enable = true;
   networking.hostName = "vmi2319146";
