@@ -1,15 +1,14 @@
 { pkgs, flake, ... }:
 {
-  imports = [
-    flake.inputs.spicetify-nix.homeManagerModules.default
-  ];
+  imports = [ 
+ flake.inputs.spicetify-nix.homeManagerModules.default ];
 
-  programs.spicetify =
+   programs.spicetify =
     let
       spicePkgs = flake.inputs.spicetify-nix.legacyPackages.${pkgs.system};
     in
     {
-      enable = pkgs.stdenv.isDarwin;
+      enable = true;
       #spicetifyPackage = pkgs.spicetify-cli;
       #spotifyPackage = pkgs.spotify;
       enabledExtensions = with spicePkgs.extensions; [ shuffle powerBar skipStats lastfm betterGenres songStats ];

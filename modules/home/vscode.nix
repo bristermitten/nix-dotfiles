@@ -2,8 +2,7 @@
 {
 
 
-  home.packages =
-    if pkgs.stdenv.isDarwin then [
-      pkgs.vscode
-    ] else [ ];
+  home.packages = [
+    pkgs.vscode
+  ];
 }
