@@ -6,7 +6,7 @@ let
 in
 {
   imports = [
-    #self.nixosModules.default
+    self.nixosModules.default
     #self.nixosModules.gui
     ./configuration.nix
   ];
