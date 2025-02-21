@@ -9,11 +9,12 @@ in
 {
   # Use TouchID for `sudo` authentication
   security.pam.enableSudoTouchIdAuth = true;
-  services.nix-daemon.enable = true;
+  #services.nix-daemon.enable = true;
 
   # These users can add Nix caches.
-  nix.settings.trusted-users = [ "root" "alex" ];
+  #nix.settings.trusted-users = [ "root" "alex" ];
 
+  nix.enable = false;
   # Configure macOS system
   # More Alexs-MacBook-Pro-3s => https://github.com/ryan4yin/nix-darwin-kickstarter/blob/main/rich-demo/modules/system.nix
   system = {

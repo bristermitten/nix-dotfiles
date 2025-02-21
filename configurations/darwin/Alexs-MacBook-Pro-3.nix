@@ -9,7 +9,8 @@ in
 {
   imports = [
     self.darwinModules.default
-  ];
+#inputs.determinate.nixosModules.default
+];
 
 
   nixpkgs.hostPlatform = "aarch64-darwin";
