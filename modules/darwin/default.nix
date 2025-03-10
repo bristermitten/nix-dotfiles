@@ -13,7 +13,9 @@ in
   #services.nix-daemon.enable = true;
 
   # These users can add Nix caches.
-  #nix.settings.trusted-users = [ "root" "alex" ];
+  nix.settings.trusted-users = [ "root" "alex" ];
+
+
 
   nix.enable = false;
   # Configure macOS system

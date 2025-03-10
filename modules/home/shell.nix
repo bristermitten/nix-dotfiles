@@ -25,8 +25,6 @@
 
     };
 
-    # Type `z <pat>` to cd to some directory
-    zoxide.enable = true;
 
     # Better shell prmot!
     starship = {
@@ -40,7 +38,7 @@
           show_always = true;
         };
         hostname = {
-          ssh_only = false;
+          ssh_only = true;
           ssh_symbol = "🌐 ";
           format = "on [$hostname](bold red) ";
           trim_at = ".local";
@@ -48,5 +46,11 @@
         };
       };
     };
+  nushell = {
+    enable = false; # TODO fix eventually
+    
+    # this sucks but it's the easiest way of doing it for now
+    configFile.source = ./shell.nu;
+  };
   };
 }
