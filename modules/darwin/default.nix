@@ -14,6 +14,7 @@ in
 
   # These users can add Nix caches.
   nix.settings.trusted-users = [ "root" "alex" ];
+  nix.settings.lazy-trees = true;
 
 
 
