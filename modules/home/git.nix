@@ -25,8 +25,8 @@
         signByDefault = true;
       };
 
+      pull.rebase = true;
       extraConfig = {
-        # pull.rebase = "false";
         credential.helper =
           if pkgs.stdenvNoCC.isDarwin
           then "osxkeychain"
@@ -36,7 +36,6 @@
         gpg.format = "ssh";
 
         init.defaultBranch = "main";
-        pull.rebase = true;
       };
 
 
