@@ -1,5 +1,5 @@
 {
-  description = "A home-manager template providing useful tools & settings for Nix-based development";
+  description = "Alex's NixOS configuration";
 
   inputs = {
     # Principle inputs (updated by `nix run .#update`)
@@ -22,10 +22,6 @@
     nixvim.url = "github:nix-community/nixvim";
     nixvim.inputs.nixpkgs.follows = "nixpkgs";
     nixvim.inputs.flake-parts.follows = "flake-parts";
-
-    spicetify-nix.url = "github:Gerg-L/spicetify-nix";
-    spicetify-nix.inputs.nixpkgs.follows = "nixpkgs";
-
   };
   # Wired using https://nixos-unified.org/autowiring.html
   outputs = inputs:
