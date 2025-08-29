@@ -25,8 +25,8 @@
         signByDefault = true;
       };
 
-            extraConfig = {
-              pull.rebase = true;
+      extraConfig = {
+        pull.rebase = true;
 
         credential.helper =
           if pkgs.stdenvNoCC.isDarwin

@@ -46,11 +46,11 @@
         };
       };
     };
-  nushell = {
-    enable = false; # TODO fix eventually
-    
-    # Temporary workaround for configuration sourcing.
-    configFile.source = ./shell.nu;
-  };
+    nushell = {
+      enable = false; # TODO fix eventually
+
+      # Temporary workaround for configuration sourcing.
+      configFile.source = ./shell.nu;
+    };
   };
 }

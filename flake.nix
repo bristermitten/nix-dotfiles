@@ -22,6 +22,8 @@
     nixvim.url = "github:nix-community/nixvim";
     nixvim.inputs.nixpkgs.follows = "nixpkgs";
     nixvim.inputs.flake-parts.follows = "flake-parts";
+
+    treefmt-nix.url = "github:numtide/treefmt-nix";
   };
   # Wired using https://nixos-unified.org/autowiring.html
   outputs = inputs:
