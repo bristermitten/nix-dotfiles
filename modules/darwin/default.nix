@@ -22,7 +22,6 @@ in
   # More Alexs-MacBook-Pro-3s => https://github.com/ryan4yin/nix-darwin-kickstarter/blob/main/rich-demo/modules/system.nix
   system = {
     defaults = {
-      dock = {
 
       finder = {
         _FXShowPosixPathInTitle = true; # show full path in finder title
@@ -36,4 +35,6 @@ in
 
     keyboard = {
   };
-}
+};
+
+  }

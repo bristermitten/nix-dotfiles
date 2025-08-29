@@ -25,8 +25,9 @@
         signByDefault = true;
       };
 
-      pull.rebase = true;
-      extraConfig = {
+            extraConfig = {
+              pull.rebase = true;
+
         credential.helper =
           if pkgs.stdenvNoCC.isDarwin
           then "osxkeychain"
