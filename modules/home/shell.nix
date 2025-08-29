@@ -49,7 +49,7 @@
   nushell = {
     enable = false; # TODO fix eventually
     
-    # this sucks but it's the easiest way of doing it for now
+    # Temporary workaround for configuration sourcing.
     configFile.source = ./shell.nu;
   };
   };
