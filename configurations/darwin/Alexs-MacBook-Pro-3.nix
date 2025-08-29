@@ -9,7 +9,6 @@ in
 {
   imports = [
     self.darwinModules.default
-#inputs.determinate.nixosModules.default
 ];
 
 
@@ -27,5 +26,7 @@ in
 
   # Used for backwards compatibility, please read the changelog before changing.
   # $ darwin-rebuild changelog
-  system.stateVersion = 4;system.primaryUser = "alex"; nixpkgs.config.allowUnfree = true;
+  system.stateVersion = 4;
+  system.primaryUser = "alex";
+  nixpkgs.config.allowUnfree = true;
 }
