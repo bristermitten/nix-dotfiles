@@ -25,7 +25,7 @@
 
     treefmt-nix.url = "github:numtide/treefmt-nix";
 
-    ghostty.url =  "github:ghostty-org/ghostty";
+    ghostty.url = "github:ghostty-org/ghostty";
 
   };
   # Wired using https://nixos-unified.org/autowiring.html
