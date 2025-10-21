@@ -10,5 +10,4 @@ in
   home.username = "alex";
   home.homeDirectory = lib.mkDefault "/${if pkgs.stdenv.isDarwin then "Users" else "home"}/alex";
   home.stateVersion = "24.05";
-  home.sessionPath = [ "$HOME/.local/bin:$PATH" ];
 }
