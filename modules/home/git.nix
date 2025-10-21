@@ -38,13 +38,10 @@
 
         init.defaultBranch = "main";
       };
-
-
-
-      difftastic.enable = true;
     };
     lazygit.enable = true;
   };
+  programs.difftastic.enable = true;
   programs.difftastic.git.enable = true;
 
 }
