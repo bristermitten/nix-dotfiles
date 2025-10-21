@@ -24,6 +24,9 @@
     nixvim.inputs.flake-parts.follows = "flake-parts";
 
     treefmt-nix.url = "github:numtide/treefmt-nix";
+
+    ghostty.url =  "github:ghostty-org/ghostty";
+
   };
   # Wired using https://nixos-unified.org/autowiring.html
   outputs = inputs:
