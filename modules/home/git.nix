@@ -13,19 +13,18 @@
   programs = {
     git = {
       enable = true;
-      userName = "Alexander Wood";
-      userEmail = "alexljwood24@hotmail.co.uk";
+
       ignores = [ "*~" "*.swp" ];
-      aliases = {
-        ci = "commit";
-      };
+
 
       signing = {
         key = "~/.ssh/id_ed25519";
         signByDefault = true;
       };
 
-      extraConfig = {
+      settings = {
+        user.name = "Alexander Wood";
+        user.email = "alexljwood24@hotmail.co.uk";
         pull.rebase = true;
 
         credential.helper =
