@@ -45,5 +45,6 @@
     };
     lazygit.enable = true;
   };
+  programs.difftastic.git.enable = true;
 
 }
