@@ -1,7 +1,7 @@
 { pkgs, lib, ... }:
 
 let
-  jdkVersions = [ 8 11 17 21 24 ];
+  jdkVersions = [ 8 11 17 21 25 ];
   #  iterate over jdk versions and symlink them to the JavaVirtualMachines directory
   #  source: https://samasaur1.github.io/blog/jdks-on-nix-darwin
   makeZuluLinks = { pkgs, lib }: versions:
