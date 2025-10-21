@@ -62,13 +62,12 @@
       enable = true;
       servers = {
         hls = {
-          enable = true;
+          enable = false;
           installGhc = false; # Managed by Nix devShell
         };
-        marksman.enable = true;
-        nil_ls.enable = true;
+        nil_ls.enable = false;
         rust_analyzer = {
-          enable = true;
+          enable = false;
           installCargo = false;
           installRustc = false;
         };
