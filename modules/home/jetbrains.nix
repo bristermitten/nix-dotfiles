@@ -1,8 +1,11 @@
 { pkgs, ... }: {
   home.packages = with pkgs; [
     jetbrains-toolbox
-    jetbrains.idea-ultimate
+    jetbrains.idea
     jetbrains.webstorm
-    jetbrains.clion
+    # jetbrains.clion
+    # jetbrains.rider
+    # jetbrains.rust-rover
+    # jetbrains.pycharm-professional
   ];
 }

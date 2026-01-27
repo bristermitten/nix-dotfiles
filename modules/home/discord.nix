@@ -4,8 +4,10 @@
 
   home.packages = [
     (pkgs.discord.override {
-      withOpenASAR = false;
+      withOpenASAR = true;
       withVencord = false;
     })
+
+    pkgs.discord-canary
   ];
 }
