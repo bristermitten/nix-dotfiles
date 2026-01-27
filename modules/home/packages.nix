@@ -10,6 +10,7 @@
     sd
     tree
     gnumake
+    just
 
     # Nix dev
     cachix
@@ -19,6 +20,10 @@
 
     # Dev
     tmate
+    bun
+    python3
+    ffmpeg
+    bitwarden-cli
 
     # On ubuntu, we need this less for `man home-configuration.nix`'s pager to
     # work.
