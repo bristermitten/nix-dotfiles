@@ -16,7 +16,7 @@
       autosuggestion.enable = true;
       syntaxHighlighting.enable = true;
       envExtra = ''
-        # Custom zshrc goes here
+        export SSH_AUTH_SOCK="$HOME/.bitwarden-ssh-agent.sock"
       '';
       oh-my-zsh = {
         enable = true;

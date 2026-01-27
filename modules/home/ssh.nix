@@ -7,7 +7,7 @@
     # default config options for all hosts
     matchBlocks."*" = {
       forwardAgent = false;
-      addKeysToAgent = "yes";
+      identityAgent = "~/.bitwarden-ssh-agent.sock";
       compression = false;
       serverAliveInterval = 0;
       serverAliveCountMax = 3;
@@ -16,10 +16,6 @@
       controlMaster = "no";
       controlPath = "~/.ssh/master-%r@%n:%p";
       controlPersist = "no";
-
-      extraOptions = {
-        UseKeychain = "yes";
-      };
     };
 
     matchBlocks."github-uni" = {

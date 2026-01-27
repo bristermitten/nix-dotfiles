@@ -18,7 +18,7 @@
 
 
       signing = {
-        key = "~/.ssh/id_ed25519";
+        key = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIPNPRzSLlLpDQwA9QpurZnREyON6z9wHiNJ9tZexFmgh";
         signByDefault = true;
       };
 

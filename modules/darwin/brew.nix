@@ -15,6 +15,7 @@
       "vlc"
       "prismlauncher"
       "ishare"
+      "bitwarden"
     ];
   };
 
