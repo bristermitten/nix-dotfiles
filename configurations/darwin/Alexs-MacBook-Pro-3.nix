@@ -9,6 +9,8 @@ in
 {
   imports = [
     self.darwinModules.default
+    inputs.determinate.darwinModules.default
+
   ];
 
 

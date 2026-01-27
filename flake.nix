@@ -26,6 +26,9 @@
     treefmt-nix.url = "github:numtide/treefmt-nix";
 
     ghostty.url = "github:ghostty-org/ghostty";
+    ghostty.inputs.nixpkgs.follows = "nixpkgs";
+
+    determinate.url = "https://flakehub.com/f/DeterminateSystems/determinate/3";
 
   };
   # Wired using https://nixos-unified.org/autowiring.html
