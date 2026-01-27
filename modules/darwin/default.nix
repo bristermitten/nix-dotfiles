@@ -15,10 +15,10 @@ in
 
   security.pam.services.sudo_local.touchIdAuth = true;
 
-
-  # These users can add Nix caches.
-  nix.settings.trusted-users = [ "root" "alex" ];
-  nix.settings.lazy-trees = true;
+  determinateNix.customSettings = {
+    trusted-users = [ "root" "alex" "@wheel" ];
+    lazy-trees = true;
+  };
 
 
 
