@@ -7,7 +7,6 @@
       "orbstack"
       "raycast"
       "plex"
-      "kemai"
       "steam"
       "whatsapp"
       "ghostty"
