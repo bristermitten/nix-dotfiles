@@ -15,6 +15,7 @@
     # Nix dev
     cachix
     nil # Nix language server
+    nh
     nix-info
     nixpkgs-fmt
 
