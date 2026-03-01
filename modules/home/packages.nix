@@ -21,7 +21,7 @@
     # Dev
     tmate
     bun
-    python3
+    (python3.withPackages (python-pkgs: [ python-pkgs.numpy ]))
     ffmpeg
     bitwarden-cli
 
