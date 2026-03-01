@@ -2,6 +2,14 @@
   homebrew = {
     enable = true;
 
+    taps = [
+      "tw93/tap"
+    ];
+
+    brews = [
+      "tw93/tap/mole"
+    ];
+
     casks = [
       "activitywatch"
       "arc"
