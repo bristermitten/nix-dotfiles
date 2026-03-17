@@ -27,6 +27,9 @@
 
     determinate.url = "https://flakehub.com/f/DeterminateSystems/determinate/3";
 
+    agenix.url = "github:ryantm/agenix";
+    agenix.inputs.nixpkgs.follows = "nixpkgs";
+
   };
   # Wired using https://nixos-unified.org/autowiring.html
   outputs = inputs:
