@@ -30,6 +30,9 @@ in
       aw-watcher-utilization = {
         package = pkgs.callPackage (self + /packages/aw-watcher-utilization.nix) { };
       };
+      aw-watcher-enhanced = {
+        package = pkgs.callPackage (self + /packages/aw-watcher-enhanced.nix) { };
+      };
     };
   };
 }
