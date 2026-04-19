@@ -1,20 +1,21 @@
 { pkgs, ... }:
 {
-  # Nix packages to install to $HOME
-  #
-  # Search for packages here: https://search.nixos.org/packages
   home.packages = with pkgs; [
     # Unix tools
-    ripgrep # Better `grep`
+    ripgrep
     fd
     sd
     tree
     gnumake
     just
+    eza
+    dust
+    procs
+    httpie
 
     # Nix dev
     cachix
-    nil # Nix language server
+    nil
     nh
     nix-info
     nixpkgs-fmt
@@ -25,23 +26,48 @@
     (python3.withPackages (python-pkgs: [ python-pkgs.numpy ]))
     ffmpeg
     bitwarden-cli
+    tokei
+    hyperfine
+    opencode
+    rtk
+    
+    vips
+    libheif
+    uv
 
-    # On ubuntu, we need this less for `man home-configuration.nix`'s pager to
-    # work.
     less
 
-    obsidian
+    # Nix tooling
+    nix-output-monitor
+    nix-tree
+
+    # GUI apps (prefer nix over brew where possible)
+    logseq
+    audacity
+    vscode
+
+    # macOS-specific
+    alt-tab-macos
+    notion-app
+    thunderbird-latest
   ];
 
-  # Programs natively supported by home-manager.
-  # They can be configured in `programs.*` instead of using home.packages.
   programs = {
-    # Better `cat`
     bat.enable = true;
-    # Type `<ctrl> + r` to fuzzy search your shell history
     fzf.enable = true;
     jq.enable = true;
-    # Install btop https://github.com/aristocratos/btop
     btop.enable = true;
+
+    eza = {
+      enable = true;
+      icons = "auto";
+      git = true;
+    };
+
+    zoxide = {
+      enable = true;
+      enableZshIntegration = true;
+    };
+
   };
 }

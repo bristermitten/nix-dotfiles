@@ -40,6 +40,7 @@
 
       };
     };
+    plenary.enable = true;
     telescope = {
       enable = true;
       keymaps = {

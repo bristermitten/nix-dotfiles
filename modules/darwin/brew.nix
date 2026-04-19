@@ -13,7 +13,6 @@
     casks = [
       "activitywatch"
       "arc"
-      "audacity"
       "bitwarden"
       "brightintosh"
       "claude"
@@ -22,8 +21,8 @@
       "ishare"
       "jordanbaird-ice"
       "lens"
-      "logseq"
       "nextcloud"
+      "music-presence"
       "obs"
       "orbstack"
       "plex"
@@ -31,11 +30,10 @@
       "raycast"
       "shadow"
       "steam"
-      "tailscale"
+      "tailscale-app"
       "the-unarchiver"
       "vlc"
       "whatsapp"
-      "wireguard-tools"
       "zotero"
     ];
   };

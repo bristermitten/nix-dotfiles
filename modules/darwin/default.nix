@@ -12,12 +12,24 @@ in
     map
       (fn: ./${fn})
       (filter (fn: fn != "default.nix") (attrNames (readDir ./.)));
+# ...
+
+  nixpkgs.overlays = [
+    (final: prev: {
+      direnv = prev.direnv.overrideAttrs (old: {
+        env = (old.env or { }) // {
+          CGO_ENABLED = "1";
+        };
+      });
+    })
+  ];
 
   security.pam.services.sudo_local.touchIdAuth = true;
 
   determinateNix.customSettings = {
     trusted-users = [ "root" "alex" "@wheel" ];
     lazy-trees = true;
+    sandbox = false;
   };
 
 

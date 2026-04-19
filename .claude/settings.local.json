@@ -1,0 +1,42 @@
+{
+  "permissions": {
+    "allow": [
+      "WebSearch",
+      "WebFetch(domain:github.com)",
+      "WebFetch(domain:mynixos.com)",
+      "WebFetch(domain:forum.activitywatch.net)",
+      "Bash(gh api:*)",
+      "WebFetch(domain:raw.githubusercontent.com)",
+      "Bash(nix-prefetch-github:*)",
+      "Bash(nix-build:*)",
+      "Bash(nix build:*)",
+      "Bash(nix run:*)",
+      "Bash(git:*)",
+      "Bash(nix log:*)",
+      "Bash(launchctl list:*)",
+      "Bash(ls:*)",
+      "Bash(curl:*)",
+      "Bash(find:*)",
+      "Bash(for pkg:*)",
+      "WebFetch(domain:nushell.sh)",
+      "WebFetch(domain:www.nushell.sh)",
+      "WebFetch(domain:www.reddit.com)",
+      "WebFetch(domain:discourse.nixos.org)",
+      "WebFetch(domain:carapace-sh.github.io)",
+      "WebFetch(domain:daiderd.com)",
+      "WebFetch(domain:nix-darwin.github.io)",
+      "WebFetch(domain:www.google.com)",
+      "WebFetch(domain:drake.dev)",
+      "WebFetch(domain:ryanxcharles.com)",
+      "WebFetch(domain:crates.io)",
+      "Bash(nix flake:*)",
+      "Bash(nix eval:*)",
+      "Bash(nvim --version)",
+      "Bash(nvim --headless -c 'q')",
+      "Bash(nh os:*)",
+      "Bash(nh darwin:*)",
+      "mcp__web-search-prime__web_search_prime",
+      "Bash(nix search:*)"
+    ]
+  }
+}
