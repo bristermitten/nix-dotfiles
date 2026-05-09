@@ -1,7 +1,7 @@
 { ... }: {
   homebrew = {
     enable = true;
-
+global.autoUpdate = true;
     taps = [
       "tw93/tap"
     ];
