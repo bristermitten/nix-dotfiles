@@ -41,15 +41,12 @@
     nix-output-monitor
     nix-tree
 
-    # GUI apps (prefer nix over brew where possible)
     logseq
     audacity
     vscode
 
     # macOS-specific
     alt-tab-macos
-    notion-app
-    thunderbird-latest
   ];
 
   programs = {
