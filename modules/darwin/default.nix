@@ -37,7 +37,7 @@ in
   security.pam.services.sudo_local.touchIdAuth = true;
 
   determinateNix.customSettings = {
-    trusted-users = [ "root" "alex" "@wheel" ];
+    trusted-users = [ "root" "alex" "fi22264" "@wheel" ];
     lazy-trees = true;
     sandbox = false;
   };

@@ -34,6 +34,18 @@ in
   nixpkgs.config.allowUnfree = true;
 
   nixpkgs.config.permittedInsecurePackages = [ # hopefully logseq will update soon
-  "electron-39.8.10"
-];
+    "electron-39.8.10"
+  ];
+
+  # Personal-only casks (gaming/media/cosmetic), on top of the shared
+  # list in modules/darwin/brew.nix.
+  homebrew.casks = [
+    "brightintosh"
+    "music-presence"
+    "plex"
+    "prismlauncher"
+    "shadow"
+    "steam"
+    "whatsapp"
+  ];
 }

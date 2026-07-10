@@ -1,4 +1,4 @@
-{ pkgs, ... }:
+{ pkgs, lib, ... }:
 {
   home.shellAliases = {
     g = "git";
@@ -18,13 +18,13 @@
 
 
       signing = {
-        key = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIPNPRzSLlLpDQwA9QpurZnREyON6z9wHiNJ9tZexFmgh";
+        key = lib.mkDefault "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIPNPRzSLlLpDQwA9QpurZnREyON6z9wHiNJ9tZexFmgh";
         signByDefault = true;
       };
 
       settings = {
         user.name = "Alexander Wood";
-        user.email = "alexljwood24@hotmail.co.uk";
+        user.email = lib.mkDefault "alexljwood24@hotmail.co.uk";
         pull.rebase = true;
 
         credential.helper =

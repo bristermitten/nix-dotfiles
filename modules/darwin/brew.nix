@@ -1,7 +1,10 @@
 { ... }: {
+  # Dev/utility casks shared across all machines.
+  # Machine-specific extras (e.g. personal gaming/media apps) live in the
+  # relevant configurations/darwin/<host>.nix instead of here.
   homebrew = {
     enable = true;
-global.autoUpdate = true;
+    global.autoUpdate = true;
     taps = [
       "tw93/tap"
     ];
@@ -14,7 +17,6 @@ global.autoUpdate = true;
       "activitywatch"
       "arc"
       "bitwarden"
-      "brightintosh"
       "claude"
       "ghostty"
       "google-chrome"
@@ -22,18 +24,12 @@ global.autoUpdate = true;
       "jordanbaird-ice"
       "lens"
       "nextcloud"
-      "music-presence"
       "obs"
       "orbstack"
-      "plex"
-      "prismlauncher"
       "raycast"
-      "shadow"
-      "steam"
       "tailscale-app"
       "the-unarchiver"
       "vlc"
-      "whatsapp"
       "zotero"
     ];
   };

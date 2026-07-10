@@ -36,7 +36,13 @@
       "Bash(nh os:*)",
       "Bash(nh darwin:*)",
       "mcp__web-search-prime__web_search_prime",
-      "Bash(nix search:*)"
+      "Bash(nix search:*)",
+      "Bash(scutil --get LocalHostName)",
+      "Bash(scutil --get ComputerName)",
+      "Bash(nix --version)",
+      "Read(//etc/**)",
+      "Bash(dscl . -list /Users)",
+      "Bash(xargs -I{} echo {})"
     ]
   }
 }
