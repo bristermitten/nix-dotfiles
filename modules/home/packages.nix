@@ -42,7 +42,6 @@
     nix-tree
 
     logseq
-    audacity
     vscode
     zed-editor
 

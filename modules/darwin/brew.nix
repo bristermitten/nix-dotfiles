@@ -16,6 +16,7 @@
     casks = [
       "activitywatch"
       "arc"
+      "audacity"
       "bitwarden"
       "claude"
       "ghostty"
