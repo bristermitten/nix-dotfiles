@@ -44,6 +44,7 @@
     logseq
     audacity
     vscode
+    zed-editor
 
     # macOS-specific
     alt-tab-macos

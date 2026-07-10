@@ -22,6 +22,7 @@ in
   users.users."alex".home = "/Users/alex";
 
   # Enable home-manager for "alex" user
+  home-manager.backupFileExtension = "backup";
   home-manager.users."alex" = {
     imports = [ (self + /configurations/home/alex.nix) ];
   };
@@ -31,4 +32,8 @@ in
   system.stateVersion = 4;
   system.primaryUser = "alex";
   nixpkgs.config.allowUnfree = true;
+
+  nixpkgs.config.permittedInsecurePackages = [ # hopefully logseq will update soon
+  "electron-39.8.10"
+];
 }
