@@ -43,7 +43,30 @@
       "Read(//etc/**)",
       "Bash(dscl . -list /Users)",
       "Bash(xargs -I{} echo {})",
-      "Bash(python3 -c \"import json,sys; d=json.load\\(sys.stdin\\); print\\(d['locks']['nodes']['nixvim']['locked']\\)\")"
+      "Bash(python3 -c \"import json,sys; d=json.load\\(sys.stdin\\); print\\(d['locks']['nodes']['nixvim']['locked']\\)\")",
+      "Read(//nix/store/88gdx2x9xk9mq6lqp03b5xik4nl21lax-darwin-system-26.11.d5bd9cd/**)",
+      "Read(//nix/var/nix/profiles/**)",
+      "Read(//Users/fi22264/.local/state/nix/**)",
+      "Bash(brew list *)",
+      "WebFetch(domain:www.bristol.ac.uk)",
+      "Bash(mkdir -p /private/tmp/claude-502/-Users-fi22264-nix-dotfiles/2320592e-ba30-4fa1-b0eb-b2ec4b2f818e/scratchpad)",
+      "Bash(/opt/homebrew/bin/brew list *)",
+      "Bash(system_profiler SPAirPortDataType)",
+      "Bash(/System/Library/PrivateFrameworks/Apple80211.framework/Versions/Current/Resources/airport -s)",
+      "Bash(echo \"exit: $?\")",
+      "Read(//Applications/**)",
+      "Bash(kill 96714 96124 96856 96572 95259 95858 96089 95022)",
+      "Bash(find / -path /nix/store -prune -o -true)",
+      "Bash(nix-instantiate --eval -E 'with import <nixpkgs> {}; discord.meta.position')",
+      "Bash(find / -type d -name \"nixpkgs\")",
+      "Read(//Users/fi22264/Library/Application Support/discord/**)",
+      "Bash(pkill -x Discord)",
+      "Bash(pkill -f \"ShipIt\")",
+      "Bash(pkill -f \"Discord Helper\")",
+      "Bash(docker --version)",
+      "Bash(rm -rf app-0.0.398)",
+      "Bash(rm -f ShipIt_request.json ShipIt_stderr.log ShipIt_stdout.log)",
+      "Bash(tee /tmp/activation-full.log)"
     ]
   }
 }

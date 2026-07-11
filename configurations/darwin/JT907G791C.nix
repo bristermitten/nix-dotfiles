@@ -21,6 +21,7 @@ in
   # https://github.com/nix-community/home-manager/issues/4026#issuecomment-1565487545
   users.users."fi22264".home = "/Users/fi22264";
 
+  home-manager.backupFileExtension = "backup";
   # Enable home-manager for "fi22264" user
   home-manager.users."fi22264" = {
     imports = [ (self + /configurations/home/fi22264.nix) ];
