@@ -23,15 +23,6 @@ in
       });
     })
 
-    (self: super: {
-      discord = super.discord.overrideAttrs (old: rec {
-        version = "0.0.394";
-        src = super.fetchurl {
-          url = "https://stable.dl2.discordapp.net/distro/app/stable/osx/universal/${version}/full.distro";
-          hash = "sha256-X2Iy2Y3344tryx1sdv0diij1GQFPS0iU8Z5vne5IICA=";
-        };
-      });
-    })
   ];
 
   security.pam.services.sudo_local.touchIdAuth = true;

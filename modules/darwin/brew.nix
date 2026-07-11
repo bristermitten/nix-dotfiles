@@ -19,6 +19,7 @@
       "audacity"
       "bitwarden"
       "claude"
+      "discord"
       "ghostty"
       "google-chrome"
       "ishare"
