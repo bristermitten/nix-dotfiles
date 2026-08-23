@@ -116,11 +116,36 @@ in
             ++ wcfg.extraOptions;
           KeepAlive = true;
           RunAtLoad = true;
+          # aw-server (started separately, see the activitywatch-server agent
+          # below) may not be up yet when a watcher first launches. Without a
+          # throttle, a watcher that can't reach it crash-restarts as fast as
+          # launchd allows and floods its log (~10s crash loop observed in
+          # practice, ~25MB of log per day).
+          ThrottleInterval = 30;
           StandardOutPath = "${config.home.homeDirectory}/Library/Logs/activitywatch-watcher-${wcfg.name}.log";
           StandardErrorPath = "${config.home.homeDirectory}/Library/Logs/activitywatch-watcher-${wcfg.name}.log";
         };
       }
-    ) cfg.watchers;
+    ) cfg.watchers // {
+      # The watchers above are useless without aw-server, which ships inside
+      # the Homebrew-installed ActivityWatch.app (see modules/darwin/brew.nix)
+      # and isn't something Nix can daemonize directly. macOS doesn't launch
+      # cask GUI apps automatically, so without this they silently never
+      # start and every watcher crash-loops forever waiting for them.
+      activitywatch-server = {
+        enable = true;
+        config = {
+          ProgramArguments = [
+            "/usr/bin/open"
+            "-jg" # launch hidden (-j), don't foreground (-g)
+            "-a"
+            "ActivityWatch"
+          ];
+          RunAtLoad = true;
+          LimitLoadToSessionType = "Aqua"; # only makes sense in a GUI login session
+        };
+      };
+    };
 
     home.file =
       # Watchers with inline settings
