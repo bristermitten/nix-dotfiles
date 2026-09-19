@@ -22,6 +22,17 @@ in
       };
       aw-watcher-utilization = {
         package = pkgs.callPackage (self + /packages/aw-watcher-utilization.nix) { };
+        # Default poll_time is 5s, and since this watcher's payload (full
+        # psutil dump) changes almost every poll, heartbeats essentially
+        # never dedupe server-side — at 5s that wrote 1.1M events / ~7.9GB
+        # into the shared sqlite db. 30s cuts that ~6x while keeping useful
+        # resolution.
+        #
+        # aw-watcher-utilization loads this via aw_core's *deprecated*
+        # load_config(), which reads "<name>.toml" but writes back to
+        # "<name>.ini" — so the section header below must match what
+        # ConfigParser expects, not real nested TOML semantics.
+        settings."aw-watcher-utilization".poll_time = 30;
       };
       aw-watcher-enhanced = {
         package = pkgs.callPackage (self + /packages/aw-watcher-enhanced.nix) { };
