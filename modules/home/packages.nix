@@ -51,7 +51,12 @@
 
   programs = {
     bat.enable = true;
-    fzf.enable = true;
+    fzf = {
+      enable = true;
+      # Atuin owns Ctrl-R for shell history search (see modules/home/shell.nix);
+      # fzf keeps Ctrl-T/Alt-C but yields the history binding to avoid the conflict.
+      historyWidget.zsh.command = "";
+    };
     jq.enable = true;
     btop.enable = true;
 

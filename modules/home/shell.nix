@@ -64,7 +64,7 @@
       enableZshIntegration = true;
       flags = [ "--disable-up-arrow" ];
       settings = {
-        auto_sync = false;
+        auto_sync = true;
         update_check = false;
         style = "compact";
         inline_height = 20;
