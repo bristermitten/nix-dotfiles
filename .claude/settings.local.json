@@ -66,7 +66,9 @@
       "Bash(docker --version)",
       "Bash(rm -rf app-0.0.398)",
       "Bash(rm -f ShipIt_request.json ShipIt_stderr.log ShipIt_stdout.log)",
-      "Bash(tee /tmp/activation-full.log)"
+      "Bash(tee /tmp/activation-full.log)",
+      "Bash(/System/Library/PrivateFrameworks/Apple80211.framework/Versions/Current/Resources/airport -I)",
+      "Bash(networksetup *)"
     ]
   }
 }
