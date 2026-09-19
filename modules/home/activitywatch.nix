@@ -12,6 +12,18 @@ let
 
   configDir = "Library/Application Support/activitywatch";
 
+  # nixpkgs restricts aw-server-rust's meta.platforms to Linux (it's simply
+  # never been tested/built for Darwin upstream), but the derivation itself
+  # is plain Rust + a prebuilt webui and builds fine on macOS. Widening the
+  # platform list here is enough to unblock it; nothing else about the
+  # derivation changes. Since Hydra never builds it for Darwin, this compiles
+  # from source locally on every nixpkgs bump that touches it.
+  aw-server-rust = pkgs.aw-server-rust.overrideAttrs (old: {
+    meta = old.meta // {
+      platforms = old.meta.platforms ++ lib.platforms.darwin;
+    };
+  });
+
   watcherType =
     {
       name,
@@ -127,12 +139,35 @@ in
         };
       }
     ) cfg.watchers // {
-      # The watchers above are useless without aw-server, which ships inside
-      # the Homebrew-installed ActivityWatch.app (see modules/darwin/brew.nix)
-      # and isn't something Nix can daemonize directly. macOS doesn't launch
-      # cask GUI apps automatically, so without this they silently never
-      # start and every watcher crash-loops forever waiting for them.
+      # aw-server-rust, built above, replaces the Python aw-server that used
+      # to come from opening the Homebrew-installed ActivityWatch.app cask
+      # (see modules/darwin/brew.nix) — same REST API and default port, but
+      # a native arm64 binary instead of an Intel one running under Rosetta.
+      # It auto-imports history from the legacy Python db
+      # (~/Library/Application Support/activitywatch/aw-server/peewee-sqlite.v2.db)
+      # on first run, so switching over doesn't lose existing data.
       activitywatch-server = {
+        enable = true;
+        config = {
+          ProgramArguments = [
+            (lib.getExe' aw-server-rust "aw-server")
+            "--port"
+            "5600"
+          ];
+          KeepAlive = true;
+          RunAtLoad = true;
+          ThrottleInterval = 30;
+          StandardOutPath = "${config.home.homeDirectory}/Library/Logs/activitywatch-server.log";
+          StandardErrorPath = "${config.home.homeDirectory}/Library/Logs/activitywatch-server.log";
+        };
+      };
+
+      # The cask app itself (see modules/darwin/brew.nix) still supplies
+      # aw-watcher-afk and aw-watcher-window: both need pyobjc, which
+      # nixpkgs marks unbuildable for Darwin, so they can't move to Nix.
+      # aw-qt's autostart_modules below is trimmed to just those two so it
+      # doesn't also launch its own aw-server and fight this one for :5600.
+      activitywatch-app = {
         enable = true;
         config = {
           ProgramArguments = [
@@ -142,14 +177,36 @@ in
             "ActivityWatch"
           ];
           RunAtLoad = true;
+          # `open` hands off to launchservices and exits immediately — it's
+          # not the app's parent, so launchd can't track the app's lifetime
+          # directly. KeepAlive here just means "keep re-running `open`",
+          # which is idempotent (no-ops if the app's already up) and revives
+          # it if it died. ThrottleInterval keeps that from becoming a tight
+          # respawn loop.
+          KeepAlive = true;
+          ThrottleInterval = 30;
           LimitLoadToSessionType = "Aqua"; # only makes sense in a GUI login session
         };
       };
     };
 
     home.file =
+      {
+        # Keep aw-qt managing only the afk/window watchers — aw-server is
+        # started by the activitywatch-server launchd agent above instead.
+        "${configDir}/aw-qt/aw-qt.toml".source = settingsFormat.generate "aw-qt-settings" {
+          aw-qt.autostart_modules = [
+            "aw-watcher-afk"
+            "aw-watcher-window"
+          ];
+          aw-qt-testing.autostart_modules = [
+            "aw-watcher-afk"
+            "aw-watcher-window"
+          ];
+        };
+      }
       # Watchers with inline settings
-      lib.mapAttrs' (
+      // lib.mapAttrs' (
         _: wcfg:
         lib.nameValuePair "${configDir}/${wcfg.name}/${wcfg.settingsFilename}" {
           source = settingsFormat.generate "activitywatch-watcher-${wcfg.name}-settings" wcfg.settings;
