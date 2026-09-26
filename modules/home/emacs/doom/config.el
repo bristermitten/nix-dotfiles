@@ -10,10 +10,9 @@
   (add-to-list 'exec-path elan-bin)
   (setenv "PATH" (concat elan-bin ":" (getenv "PATH"))))
 
-;; Type \forall and get ∀, like the Lean VS Code extension and julia-vim in nvim.
-;; nael (Lean 4) ships its own abbrevs; the TeX input method covers Haskell etc.
-(add-hook! 'haskell-mode-hook #'(lambda () (set-input-method "TeX")))
-(add-hook! 'haskell-ts-mode-hook #'(lambda () (set-input-method "TeX")))
+;; Lean buffers (nael) already expand \forall -> ∀ via abbrevs. For other modes the
+;; TeX input method does it, but it also rewrites `--', `_x' and `^x', which breaks
+;; code, so it is NOT enabled by default: toggle it with `C-\' when you want it.
 
 ;; Compile popup: `SPC c c` runs `compile`, output in a bottom panel.
 (set-popup-rule! "^\\*compilation\\*" :side 'bottom :size 0.3 :select nil :quit t)
@@ -22,3 +21,27 @@
 ;; Direnv: pick up each project's devShell (hls, cargo, ...) for LSP/compile.
 ;; The +eglot LSP client starts after envrc has set exec-path.
 (after! envrc (setq envrc-show-summary-in-minibuffer nil))
+
+;; LSP fallback: use the project devShell (via envrc) if it provides the server,
+;; otherwise `lsp-nix' runs it from the dotfiles flake's per-language shell.
+(after! eglot
+  (add-to-list 'eglot-server-programs
+               '((haskell-mode haskell-ts-mode haskell-literate-mode)
+                 "lsp-nix" "haskell" "haskell-language-server-wrapper" "--lsp"))
+  (add-to-list 'eglot-server-programs
+               '((rust-mode rust-ts-mode) "lsp-nix" "rust" "rust-analyzer")))
+
+;; Discord rich presence
+(use-package! elcord
+  :commands elcord-mode
+  :init (add-hook 'doom-first-buffer-hook #'elcord-mode)
+  :config (setq elcord-idle-message "Away from Emacs"
+                elcord-display-buffer-details nil))
+
+;; Right-click context menu (Copy/Cut/Paste, LSP actions, ...) like nvim's.
+;; Cmd-C/V/X/A are already bound by Doom's default module and sync with the
+;; system clipboard.
+(context-menu-mode 1)
+
+;; In vterm, plain `yank' pastes into the Emacs buffer, not the shell.
+(map! :after vterm :map vterm-mode-map "s-v" #'vterm-yank)
