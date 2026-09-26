@@ -4,7 +4,8 @@
     flake.inputs.nixvim.homeModules.nixvim
   ];
 
-  programs.nixvim = import ./nixvim.nix // {
+  programs.nixvim = {
+    imports = [ ./nixvim.nix ];
     enable = true;
   };
 }
