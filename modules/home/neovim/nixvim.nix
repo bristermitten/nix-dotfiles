@@ -117,12 +117,15 @@
           enable = true;
           package = null;
           installGhc = false;
+          # project devShell if present, else the flake's haskell shell
+          cmd = [ "lsp-nix" "haskell" "haskell-language-server-wrapper" "--lsp" ];
         };
         rust_analyzer = {
           enable = true;
           package = null;
           installCargo = false;
           installRustc = false;
+          cmd = [ "lsp-nix" "rust" "rust-analyzer" ];
         };
         nil_ls.enable = true;
       };
