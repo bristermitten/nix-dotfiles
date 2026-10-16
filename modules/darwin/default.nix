@@ -21,8 +21,13 @@ in
           CGO_ENABLED = "1";
         };
       });
+      vscode = prev.vscode.overrideAttrs (oldAttrs: {
+        postPatch = builtins.replaceStrings
+          [ "Contents/Resources/app/node_modules/@vscode/ripgrep-universal" ]
+          [ "Contents/Resources/app/node_modules.asar.unpacked/@vscode/ripgrep-universal" ]
+          (oldAttrs.postPatch or "");
+      });
     })
-
   ];
 
   security.pam.services.sudo_local.touchIdAuth = true;
@@ -48,6 +53,14 @@ in
         QuitMenuItem = true; # enable quit menu item
         ShowPathbar = true; # show path bar
         ShowStatusBar = true; # show status bar
+      };
+
+      CustomUserPreferences."com.apple.symbolichotkeys".AppleSymbolicHotKeys = {
+        # "Switch to Desktop N" (default combo is ctrl+N), off by default in System Settings
+        "118" = { enabled = true; }; # Desktop 1
+        "119" = { enabled = true; }; # Desktop 2
+        "120" = { enabled = true; }; # Desktop 3
+        "121" = { enabled = true; }; # Desktop 4
       };
     };
 

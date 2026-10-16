@@ -14,7 +14,5 @@ in
   home.stateVersion = "24.05";
   home.sessionPath = [ "$HOME/.local/bin" ];
 
-  # Separate identity from the personal laptop, same GitHub account.
-  programs.git.settings.user.email = "alexander.wood@bristol.ac.uk";
   programs.git.signing.key = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIKwuud+4Cwa4hLVsI8MZWSMEj/d9JRo1qBwBubjeJWPi";
 }

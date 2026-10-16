@@ -67,8 +67,35 @@
       "Bash(rm -rf app-0.0.398)",
       "Bash(rm -f ShipIt_request.json ShipIt_stderr.log ShipIt_stdout.log)",
       "Bash(tee /tmp/activation-full.log)",
+<<<<<<< HEAD
       "Bash(/System/Library/PrivateFrameworks/Apple80211.framework/Versions/Current/Resources/airport -I)",
       "Bash(networksetup *)"
+=======
+      "Bash(cd *)",
+      "Bash(timeout 15 discord)",
+      "Read(//tmp/**)",
+      "Bash(nohup discord)",
+      "Bash(disown)",
+      "Bash(grep \"MacOS/Discord$\")",
+      "Bash(dig +short updates.discord.com)",
+      "Bash(host updates.discord.com)",
+      "Bash(rm -rf \"/Users/fi22264/Library/Application Support/discord/app-0.0.398\" \"/Users/fi22264/Library/Application Support/discord/ShipIt_request.json\" \"/Users/fi22264/Library/Application Support/discord/SingletonLock\" \"/Users/fi22264/Library/Application Support/discord/SingletonCookie\" \"/Users/fi22264/Library/Application Support/discord/SingletonSocket\")",
+      "Bash(open -a \"/Applications/Discord.app\")",
+      "Bash(log show *)",
+      "Bash(/Applications/Discord.app/Contents/MacOS/Discord)",
+      "Bash(awk '{print $2, $11, $12}')",
+      "Bash(osascript -e 'tell application \"System Events\" to get name of every window of process \"Discord\"')",
+      "Bash(ssh-add -l)",
+      "Bash(echo \"EXIT: $?\")",
+      "Read(//Users/fi22264/.ssh/**)",
+      "Bash(git config *)",
+      "Bash(ssh-keygen -lf /tmp/sk.pub)",
+      "Bash(echo \"test content\")",
+      "Bash(ssh-keygen -Y sign -n git -f ~/.ssh/id_ed25519.pub -U testmsg.txt)",
+      "Bash(python3 *)",
+      "Bash(cp flake.lock /tmp/flake.lock.bak)",
+      "Bash(cp flake.lock \"/private/tmp/claude-502/-Users-fi22264-nix-dotfiles/48b23016-0f22-4655-92b3-22bf4562172e/scratchpad/flake.lock.bak\")"
+>>>>>>> b856c7b (update uni laptop config: ghostty, ssh settings, brew, flake.lock)
     ]
   }
 }

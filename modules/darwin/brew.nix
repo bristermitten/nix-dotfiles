@@ -15,6 +15,7 @@
 
     casks = [
       "activitywatch"
+      "alt-tab"
       "arc"
       "audacity"
       "bitwarden"
@@ -29,6 +30,7 @@
       "obs"
       "orbstack"
       "raycast"
+      "rectangle"
       "tailscale-app"
       "the-unarchiver"
       "vlc"
