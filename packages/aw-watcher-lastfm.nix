@@ -1,11 +1,11 @@
-{
-  lib,
-  rustPlatform,
-  fetchFromGitHub,
-  pkg-config,
-  openssl,
-  apple-sdk_15,
-  stdenv,
+{ lib
+, rustPlatform
+, fetchFromGitHub
+, pkg-config
+, openssl
+, apple-sdk_15
+, stdenv
+,
 }:
 
 rustPlatform.buildRustPackage rec {

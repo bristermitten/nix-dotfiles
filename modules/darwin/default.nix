@@ -12,7 +12,7 @@ in
     map
       (fn: ./${fn})
       (filter (fn: fn != "default.nix") (attrNames (readDir ./.)));
-# ...
+  # ...
 
   nixpkgs.overlays = [
     (final: prev: {

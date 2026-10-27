@@ -36,7 +36,8 @@ in
   system.primaryUser = "fi22264";
   nixpkgs.config.allowUnfree = true;
 
-  nixpkgs.config.permittedInsecurePackages = [ # hopefully logseq will update soon
+  nixpkgs.config.permittedInsecurePackages = [
+    # hopefully logseq will update soon
     "electron-39.8.10"
   ];
 }

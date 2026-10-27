@@ -1,8 +1,7 @@
-{
-  config,
-  lib,
-  pkgs,
-  ...
+{ config
+, lib
+, pkgs
+, ...
 }:
 
 let
@@ -25,10 +24,9 @@ let
   });
 
   watcherType =
-    {
-      name,
-      config,
-      ...
+    { name
+    , config
+    , ...
     }:
     {
       options = {
@@ -131,27 +129,29 @@ in
   };
 
   config = lib.mkIf cfg.enable {
-    launchd.agents = lib.mapAttrs' (
-      _: wcfg:
-      lib.nameValuePair "activitywatch-watcher-${wcfg.name}" {
-        enable = true;
-        config = {
-          ProgramArguments =
-            [ (lib.getExe' wcfg.package wcfg.executable) ]
-            ++ wcfg.extraOptions;
-          KeepAlive = true;
-          RunAtLoad = true;
-          # aw-server (started separately, see the activitywatch-server agent
-          # below) may not be up yet when a watcher first launches. Without a
-          # throttle, a watcher that can't reach it crash-restarts as fast as
-          # launchd allows and floods its log (~10s crash loop observed in
-          # practice, ~25MB of log per day).
-          ThrottleInterval = 30;
-          StandardOutPath = "${config.home.homeDirectory}/Library/Logs/activitywatch-watcher-${wcfg.name}.log";
-          StandardErrorPath = "${config.home.homeDirectory}/Library/Logs/activitywatch-watcher-${wcfg.name}.log";
-        };
-      }
-    ) cfg.watchers // {
+    launchd.agents = lib.mapAttrs'
+      (
+        _: wcfg:
+          lib.nameValuePair "activitywatch-watcher-${wcfg.name}" {
+            enable = true;
+            config = {
+              ProgramArguments =
+                [ (lib.getExe' wcfg.package wcfg.executable) ]
+                  ++ wcfg.extraOptions;
+              KeepAlive = true;
+              RunAtLoad = true;
+              # aw-server (started separately, see the activitywatch-server agent
+              # below) may not be up yet when a watcher first launches. Without a
+              # throttle, a watcher that can't reach it crash-restarts as fast as
+              # launchd allows and floods its log (~10s crash loop observed in
+              # practice, ~25MB of log per day).
+              ThrottleInterval = 30;
+              StandardOutPath = "${config.home.homeDirectory}/Library/Logs/activitywatch-watcher-${wcfg.name}.log";
+              StandardErrorPath = "${config.home.homeDirectory}/Library/Logs/activitywatch-watcher-${wcfg.name}.log";
+            };
+          }
+      )
+      cfg.watchers // {
       # aw-server-rust, built above, replaces the Python aw-server that used
       # to come from opening the Homebrew-installed ActivityWatch.app cask
       # (see modules/darwin/brew.nix) — same REST API and default port, but
@@ -227,27 +227,32 @@ in
         };
       }
       # Watchers with inline settings
-      // lib.mapAttrs' (
-        _: wcfg:
-        lib.nameValuePair "${configDir}/${wcfg.name}/${wcfg.settingsFilename}" {
-          source = settingsFormat.generate "activitywatch-watcher-${wcfg.name}-settings" wcfg.settings;
-        }
-      ) (lib.filterAttrs (_: wcfg: wcfg.configFile == null && wcfg.settings != { }) cfg.watchers);
+      // lib.mapAttrs'
+        (
+          _: wcfg:
+            lib.nameValuePair "${configDir}/${wcfg.name}/${wcfg.settingsFilename}" {
+              source = settingsFormat.generate "activitywatch-watcher-${wcfg.name}-settings" wcfg.settings;
+            }
+        )
+        (lib.filterAttrs (_: wcfg: wcfg.configFile == null && wcfg.settings != { }) cfg.watchers);
 
     # Watchers with configFile (e.g. agenix secrets) — symlinked at activation
     # time since the path is only available after decryption.
-    home.activation.activitywatchSetup = let
-      commands = lib.mapAttrsToList (_: wcfg:
-        let
-          dir = "${config.home.homeDirectory}/${configDir}/${wcfg.name}";
-          dest = "${dir}/${wcfg.settingsFilename}";
-        in
-        ''
-          mkdir -p "${dir}"
-          ln -sf "${wcfg.configFile}" "${dest}"
-        ''
-      ) (lib.filterAttrs (_: wcfg: wcfg.configFile != null) cfg.watchers);
-    in
+    home.activation.activitywatchSetup =
+      let
+        commands = lib.mapAttrsToList
+          (_: wcfg:
+            let
+              dir = "${config.home.homeDirectory}/${configDir}/${wcfg.name}";
+              dest = "${dir}/${wcfg.settingsFilename}";
+            in
+            ''
+              mkdir -p "${dir}"
+              ln -sf "${wcfg.configFile}" "${dest}"
+            ''
+          )
+          (lib.filterAttrs (_: wcfg: wcfg.configFile != null) cfg.watchers);
+      in
       lib.hm.dag.entryAfter [ "writeBoundary" "agenix" ]
         (lib.concatStrings commands);
   };
