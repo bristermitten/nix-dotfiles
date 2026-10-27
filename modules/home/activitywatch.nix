@@ -107,6 +107,19 @@ in
   options.services.activitywatchDarwin = {
     enable = lib.mkEnableOption "ActivityWatch extra watchers (macOS)";
 
+    remoteServer = lib.mkOption {
+      type = with lib.types; nullOr str;
+      default = null;
+      example = "10.0.1.2:5600";
+      description = ''
+        host:port of a central aw-server. When set, nothing runs a local
+        aw-server: localhost:5600 is instead forwarded to this address (so the
+        watchers, including the cask's afk/window ones, need no reconfiguring).
+        While the target is unreachable the forward just refuses connections
+        and aw-client queues events locally until it comes back.
+      '';
+    };
+
     watchers = lib.mkOption {
       type = with lib.types; attrsOf (submodule watcherType);
       default = { };
@@ -149,11 +162,19 @@ in
       activitywatch-server = {
         enable = true;
         config = {
-          ProgramArguments = [
-            (lib.getExe' aw-server-rust "aw-server")
-            "--port"
-            "5600"
-          ];
+          ProgramArguments =
+            if cfg.remoteServer == null then
+              [
+                (lib.getExe' aw-server-rust "aw-server")
+                "--port"
+                "5600"
+              ]
+            else
+              [
+                (lib.getExe pkgs.socat)
+                "TCP-LISTEN:5600,bind=127.0.0.1,fork,reuseaddr"
+                "TCP:${cfg.remoteServer}"
+              ];
           KeepAlive = true;
           RunAtLoad = true;
           ThrottleInterval = 30;

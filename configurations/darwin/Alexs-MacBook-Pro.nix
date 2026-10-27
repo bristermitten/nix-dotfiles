@@ -15,6 +15,9 @@ in
 
 
   nixpkgs.hostPlatform = "aarch64-darwin";
+
+  # WireGuard to the homelab (central ActivityWatch server); peer must exist on the VPS.
+  services.awTunnel = { enable = true; address = "10.0.1.3"; };
   networking.hostName = "Alexs-MacBook-Pro";
 
   # For home-manager to work.
