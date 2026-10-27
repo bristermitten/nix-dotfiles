@@ -6,7 +6,6 @@
     includes = [ "config.d/*" ];
     enableDefaultConfig = false;
 
-<<<<<<< HEAD
     # default config options for all hosts
     settings."*" = {
       ForwardAgent = false;
@@ -65,40 +64,6 @@
       User = "alex";
       IdentityFile = "~/.ssh/id_ed25519";
       IdentitiesOnly = true;
-=======
-    settings = {
-      "*" = {
-        ForwardAgent = false;
-        IdentityAgent = "~/.bitwarden-ssh-agent.sock";
-        Compression = false;
-        ServerAliveInterval = 0;
-        ServerAliveCountMax = 3;
-        HashKnownHosts = false;
-        UserKnownHostsFile = "~/.ssh/known_hosts";
-        ControlMaster = "no";
-        ControlPath = "~/.ssh/master-%r@%n:%p";
-        ControlPersist = "no";
-      };
-
-      "github-uni" = {
-        HostName = "github.com";
-        User = "git";
-        IdentityFile = "~/.ssh/id_ed25519_uni";
-        IdentitiesOnly = true;
-      };
-
-      "lab" = {
-        HostName = "rd-mvb-linuxlab.bristol.ac.uk";
-        ProxyJump = "seis";
-        User = "fi22264";
-      };
-
-      "seis" = {
-        HostName = "seis.bris.ac.uk";
-        User = "fi22264";
-        ForwardAgent = true;
-      };
->>>>>>> b856c7b (update uni laptop config: ghostty, ssh settings, brew, flake.lock)
     };
   };
 }

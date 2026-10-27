@@ -67,10 +67,8 @@
       "Bash(rm -rf app-0.0.398)",
       "Bash(rm -f ShipIt_request.json ShipIt_stderr.log ShipIt_stdout.log)",
       "Bash(tee /tmp/activation-full.log)",
-<<<<<<< HEAD
       "Bash(/System/Library/PrivateFrameworks/Apple80211.framework/Versions/Current/Resources/airport -I)",
-      "Bash(networksetup *)"
-=======
+      "Bash(networksetup *)",
       "Bash(cd *)",
       "Bash(timeout 15 discord)",
       "Read(//tmp/**)",
@@ -95,7 +93,6 @@
       "Bash(python3 *)",
       "Bash(cp flake.lock /tmp/flake.lock.bak)",
       "Bash(cp flake.lock \"/private/tmp/claude-502/-Users-fi22264-nix-dotfiles/48b23016-0f22-4655-92b3-22bf4562172e/scratchpad/flake.lock.bak\")"
->>>>>>> b856c7b (update uni laptop config: ghostty, ssh settings, brew, flake.lock)
     ]
   }
 }

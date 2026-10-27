@@ -29,7 +29,7 @@
     hyperfine
     opencode
     rtk
-    
+
     vips
     libheif
     uv
@@ -56,13 +56,9 @@
     bat.enable = true;
     fzf = {
       enable = true;
-<<<<<<< HEAD
       # Atuin owns Ctrl-R for shell history search (see modules/home/shell.nix);
       # fzf keeps Ctrl-T/Alt-C but yields the history binding to avoid the conflict.
       historyWidget.zsh.command = "";
-=======
-      historyWidget.command = "";
->>>>>>> b856c7b (update uni laptop config: ghostty, ssh settings, brew, flake.lock)
     };
     jq.enable = true;
     btop.enable = true;
