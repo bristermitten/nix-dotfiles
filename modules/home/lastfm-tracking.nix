@@ -14,6 +14,8 @@ in
 
   services.activitywatchDarwin = {
     enable = true;
+    # Central server on the homelab, reached over the aw-tunnel WireGuard link.
+    remoteServer = "10.0.1.2:5600";
     watchers = {
       aw-watcher-lastfm = {
         package = pkgs.callPackage (self + /packages/aw-watcher-lastfm.nix) { };
