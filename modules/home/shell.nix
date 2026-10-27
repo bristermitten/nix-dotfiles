@@ -1,4 +1,4 @@
-{ ... }:
+{ pkgs, ... }:
 {
   home.sessionVariables = {
     EDITOR = "nvim";
@@ -62,6 +62,8 @@
     atuin = {
       enable = true;
       enableZshIntegration = true;
+      # 18.23.0's e2e_pty/e2e_capture tests spawn shells that need atuin on PATH, which fails in the build sandbox
+      package = pkgs.atuin.overrideAttrs { doCheck = false; };
       flags = [ "--disable-up-arrow" ];
       settings = {
         auto_sync = true;

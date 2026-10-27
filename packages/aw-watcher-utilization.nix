@@ -3,7 +3,13 @@
   fetchFromGitHub,
 }:
 
-python3Packages.buildPythonApplication {
+let
+  # aw-core pins peewee==3.*; nixpkgs' default peewee is now 4.x
+  py = python3Packages.overrideScope (final: prev: {
+    aw-core = prev.aw-core.override { peewee = prev.peewee_3; };
+  });
+in
+py.buildPythonApplication {
   pname = "aw-watcher-utilization";
   version = "1.2.2";
   pyproject = true;
@@ -15,7 +21,7 @@ python3Packages.buildPythonApplication {
     hash = "sha256-8bKMCg6I7+0nOrdOplX4VT417Lti+3PHIn3x8Ik24BU=";
   };
 
-  nativeBuildInputs = [ python3Packages.poetry-core ];
+  nativeBuildInputs = [ py.poetry-core ];
 
   postPatch = ''
     substituteInPlace pyproject.toml \
@@ -23,7 +29,7 @@ python3Packages.buildPythonApplication {
       --replace-fail 'poetry.masonry.api' 'poetry.core.masonry.api'
   '';
 
-  dependencies = with python3Packages; [
+  dependencies = with py; [
     psutil
     aw-core
     aw-client

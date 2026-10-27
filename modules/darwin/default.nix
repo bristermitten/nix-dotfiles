@@ -20,6 +20,8 @@ in
         env = (old.env or { }) // {
           CGO_ENABLED = "1";
         };
+        # 2.38.2's aliases scenario times out in the darwin build sandbox
+        doCheck = false;
       });
       vscode = prev.vscode.overrideAttrs (oldAttrs: {
         postPatch = builtins.replaceStrings

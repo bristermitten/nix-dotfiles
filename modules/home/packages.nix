@@ -21,7 +21,6 @@
     nixpkgs-fmt
 
     # Dev
-    tmate
     bun
     (python3.withPackages (python-pkgs: [ python-pkgs.numpy ]))
     ffmpeg
@@ -41,7 +40,7 @@
     nix-output-monitor
     nix-tree
 
-    logseq
+    # logseq we are using the beta
     vscode
     zed-editor
 
