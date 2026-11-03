@@ -59,7 +59,10 @@ in
 
   config = lib.mkIf cfg.enable {
     launchd.daemons.aw-tunnel.serviceConfig = {
-      ProgramArguments = [ "${up}" ];
+      # Launch via /bin/sh and wait for the script: at boot launchd can start
+      # this before the /nix volume is mounted, and a missing program fails the
+      # spawn (EX_CONFIG) and wedges the job. /bin/sh is always there.
+      ProgramArguments = [ "/bin/sh" "-c" "until [ -x ${up} ]; do sleep 2; done; exec ${up}" ];
       RunAtLoad = true;
       StartInterval = 60;
       StandardOutPath = "/var/log/aw-tunnel.log";
