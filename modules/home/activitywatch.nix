@@ -186,8 +186,9 @@ in
       # The cask app itself (see modules/darwin/brew.nix) still supplies
       # aw-watcher-afk and aw-watcher-window: both need pyobjc, which
       # nixpkgs marks unbuildable for Darwin, so they can't move to Nix.
-      # aw-qt's autostart_modules below is trimmed to just those two so it
-      # doesn't also launch its own aw-server and fight this one for :5600.
+      # aw-qt's autostart_modules below is trimmed to those two plus the
+      # cask's aw-watcher-input (key/click counts) so it doesn't also launch
+      # its own aw-server and fight this one for :5600.
       activitywatch-app = {
         enable = true;
         config = {
@@ -213,16 +214,18 @@ in
 
     home.file =
       {
-        # Keep aw-qt managing only the afk/window watchers — aw-server is
+        # Keep aw-qt managing only the afk/window/input watchers — aw-server is
         # started by the activitywatch-server launchd agent above instead.
         "${configDir}/aw-qt/aw-qt.toml".source = settingsFormat.generate "aw-qt-settings" {
           aw-qt.autostart_modules = [
             "aw-watcher-afk"
             "aw-watcher-window"
+            "aw-watcher-input"
           ];
           aw-qt-testing.autostart_modules = [
             "aw-watcher-afk"
             "aw-watcher-window"
+            "aw-watcher-input"
           ];
         };
       }
