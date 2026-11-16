@@ -45,3 +45,12 @@
 
 ;; In vterm, plain `yank' pastes into the Emacs buffer, not the shell.
 (map! :after vterm :map vterm-mode-map "s-v" #'vterm-yank)
+
+;; SPC p p: open the project as a file tree instead of prompting for a file.
+(setq +workspaces-switch-project-function
+      (lambda (_dir) (treemacs-add-and-display-current-project-exclusively)))
+
+;; macOS green button: resize by pixel, not character cell. Cell snapping makes
+;; the zoom stop at full height but a thin width before the second press.
+(setq frame-resize-pixelwise t
+      window-resize-pixelwise t)
